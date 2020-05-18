@@ -1,5 +1,3 @@
-import bcrypt from 'bcrypt';
-import { User } from '../models';
 import {
   getEvents,
   getEventsById,
@@ -7,6 +5,8 @@ import {
   editEvent,
   deleteEvent,
 } from '../entities/eventResolver';
+
+import { register, login } from '../entities/userResolver';
 
 const resolvers = {
   Query: {
@@ -22,20 +22,8 @@ const resolvers = {
     deleteEvent,
     // User
 
-    register: async (_, args) => {
-      const { username, email, password } = args;
-      const newUser = new User({ username, email, password });
-      await newUser.save();
-
-      return newUser;
-    },
-    login: async (_, args) => {
-      const { email, password } = args;
-      const getUser = await User.findOne({ email });
-
-      const check = await bcrypt.compare(password, getUser.password);
-      console.log(check);
-    },
+    register,
+    login,
   },
 };
 

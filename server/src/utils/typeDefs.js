@@ -23,6 +23,25 @@ const typeDefs = gql`
 
   ######## Start of User Definitions
 
+  input UserRegister {
+    username: String!
+    email: String!
+    password: String!
+  }
+
+  input UserLogin {
+    email: String!
+    password: String!
+  }
+
+  type RegisterOutput {
+    result: String!
+  }
+
+  type LoginOutput {
+    result: String!
+  }
+
   type User {
     id: ID!
     username: String!
@@ -42,8 +61,8 @@ const typeDefs = gql`
   type Mutation {
     ## User mutations
 
-    register(username: String!, email: String!, password: String!): User!
-    login(email: String!, password: String!): User!
+    register(input: UserRegister!): RegisterOutput!
+    login(input: UserLogin!): LoginOutput!
 
     ## Event mutations
 
