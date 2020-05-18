@@ -1,4 +1,4 @@
-<h1 align="center">⭐️ Trakka Back-End ⭐️</h1>
+<h1 align="center">⭐️ Trakka ⭐️</h1>
 
 ## Features 🤩
 
