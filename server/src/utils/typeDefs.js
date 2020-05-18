@@ -13,12 +13,18 @@ const typeDefs = gql`
     description: String!
   }
 
+  type DeleteOutput {
+    result: String!
+  }
+
   type Query {
     getEvents: [Event!]!
+    getEventsById(id: ID!): Event!
   }
 
   type Mutation {
-    createEvent(event: EventInput): Event
+    createEvent(event: EventInput!): Event!
+    deleteEvent(id: ID!): DeleteOutput
   }
 `;
 
