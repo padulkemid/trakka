@@ -1,6 +1,8 @@
 import { gql } from 'apollo-server';
 
 const typeDefs = gql`
+  ######## Start of Events Definitions
+
   type Event {
     id: ID!
     title: String!
@@ -26,6 +28,8 @@ const typeDefs = gql`
     createEvent(event: EventInput!): Event!
     deleteEvent(id: ID!): DeleteOutput
   }
+
+  ######## End of Events Definitions
 `;
 
 export default typeDefs;
