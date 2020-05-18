@@ -2,6 +2,12 @@ import { gql } from 'apollo-server';
 
 const typeDefs = gql`
   ######## Start of Events Definitions
+  type User {
+    id: ID!
+    username: String!
+    email: String!
+    password: String!
+  }
 
   type Event {
     id: ID!
@@ -25,6 +31,8 @@ const typeDefs = gql`
   }
 
   type Mutation {
+    register(username: String!, email: String!, password: String!): User!
+    login(email: String!, password: String!): User!
     createEvent(event: EventInput!): Event!
     deleteEvent(id: ID!): DeleteOutput
   }
