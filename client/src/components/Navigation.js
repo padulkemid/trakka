@@ -8,6 +8,11 @@ import {
 } from 'react-router-dom'
 
 export default () => {
+
+    function Logout(){
+        
+    }
+
     retrun (
         <Router>
             <nav className='navbar navbar-expand-lg navbar-light bg-light'>
@@ -17,6 +22,9 @@ export default () => {
                     </li>
                     <li className='nav-item'>
                         <Link className='nav-link' to="/register"> Register </Link>
+                    </li>
+                    <li className='nav-item'>
+                        <Link className='nav-link' to={Logout}> Logout </Link>
                     </li>
                 </ul>
             </nav>
