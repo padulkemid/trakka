@@ -1,4 +1,7 @@
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+
+import redis from '../utils/redis';
 import { User } from '../models';
 
 const register = async (_, { input }) => {
@@ -20,6 +23,8 @@ const login = async (_, { input }) => {
   if (!compare) {
     result = 'Wrong password!';
   } else {
+    const token = jwt.sign({ email }, process.env.JWT_SECRET);
+    redis.set('token', token);
     result = `Successfully logged in with email: ${email}`;
   }
 
