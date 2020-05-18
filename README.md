@@ -1,7 +1,9 @@
-<h1 align="center">Trakka</h1>
+<h1 align="center">⭐️ Trakka Back-End ⭐️</h1>
 
 ## Branch Desc
 
+_**Work in Progress**_
 
-_BACK END_ branch, do you own risk.
+  - GraphQL 🍭
+  - Mongoose 🍃 
 
