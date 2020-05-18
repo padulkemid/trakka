@@ -1,8 +1,17 @@
-// import model here!
+import { Event } from '../models';
 
 const resolvers = {
   Query: {
-    hw: () => ({ world: 'Oi ini padoel' }),
+    getEvents: () => Event.find(),
+  },
+
+  Mutation: {
+    createEvent: async (_, { event }) => {
+      const newEvent = new Event(event);
+      await newEvent.save();
+
+      return newEvent;
+    },
   },
 };
 
