@@ -14,6 +14,7 @@ const register = async (_, { input }) => {
 };
 
 const login = async (_, { input }) => {
+  await redis.flushall();
   const { email, password } = input;
   const getUser = await User.findOne({ email });
   const compare = await bcrypt.compare(password, getUser.password);
@@ -24,11 +25,19 @@ const login = async (_, { input }) => {
     result = 'Wrong password!';
   } else {
     const token = jwt.sign({ email }, process.env.JWT_SECRET);
-    redis.set('token', token);
+    await redis.set('token', token);
     result = `Successfully logged in with email: ${email}`;
   }
 
   return { result };
 };
 
-export { register, login };
+const logout = async () => {
+  await redis.flushall();
+
+  return {
+    result: 'Successfully logged out!',
+  };
+};
+
+export { register, login, logout };

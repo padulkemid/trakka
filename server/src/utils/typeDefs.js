@@ -14,10 +14,7 @@ const typeDefs = gql`
   input EventInput {
     title: String!
     description: String!
-  }
-
-  type DeleteOutput {
-    result: String!
+    timestamp: String
   }
 
   ######## End of Event Definitions
@@ -35,14 +32,6 @@ const typeDefs = gql`
     password: String!
   }
 
-  type RegisterOutput {
-    result: String!
-  }
-
-  type LoginOutput {
-    result: String!
-  }
-
   type User {
     id: ID!
     username: String!
@@ -54,6 +43,10 @@ const typeDefs = gql`
 
   ######## Start of Queries and Mutations
 
+  type ResultOutput {
+    result: String!
+  }
+
   type Query {
     getEvents: [Event!]!
     getEventsById(id: ID!): Event!
@@ -62,14 +55,15 @@ const typeDefs = gql`
   type Mutation {
     ## User mutations
 
-    register(input: UserRegister!): RegisterOutput!
-    login(input: UserLogin!): LoginOutput!
+    register(input: UserRegister!): ResultOutput!
+    login(input: UserLogin!): ResultOutput!
+    logout: ResultOutput!
 
     ## Event mutations
 
     createEvent(event: EventInput!): Event!
     editEvent(id: ID!, event: EventInput!): Event!
-    deleteEvent(id: ID!): DeleteOutput
+    deleteEvent(id: ID!): ResultOutput
   }
 
   ######## End of Queries and Mutations

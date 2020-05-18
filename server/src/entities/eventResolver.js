@@ -23,12 +23,12 @@ const verify = async () => {
 // Queries
 
 const getEvents = async () => {
-  verify();
+  await verify();
   const getAllEvents = await Event.find({ email: parentEmailCheck });
   return getAllEvents;
 };
 const getEventsById = async (_, { id }) => {
-  verify();
+  await verify();
   const getEvent = await Event.findOne({ _id: id, email: parentEmailCheck });
   return getEvent;
 };
@@ -38,9 +38,10 @@ export { getEventsById, getEvents };
 // Mutations
 
 const createEvent = async (_, { event }) => {
-  verify();
-  const { title, description } = event;
+  await verify();
+  const { title, description, timestamp } = event;
   let returnedEvent = null;
+
   if (!parentEmailCheck) {
     console.log('not logged in.');
   } else {
@@ -48,6 +49,7 @@ const createEvent = async (_, { event }) => {
       email: parentEmailCheck,
       title,
       description,
+      timestamp,
     };
     const newEvent = new Event(struct);
     await newEvent.save();
@@ -58,21 +60,29 @@ const createEvent = async (_, { event }) => {
 };
 
 const editEvent = async (_, { id, event }) => {
-  const { title, description } = event;
-  const newEvent = await Event.findById(id);
+  await verify();
+  const { title, description, timestamp } = event;
+  let returnedEvent = null;
 
-  // Edit title, and desc
-  newEvent.title = title;
-  newEvent.description = description;
+  if (!parentEmailCheck) {
+    console.log('Not logged in!');
+  } else {
+    const newEvent = await Event.findOne({ _id: id, email: parentEmailCheck });
 
-  // save
-  newEvent.save();
+    // Edit title, and desc
+    newEvent.title = title;
+    newEvent.description = description;
+    newEvent.timestamp = timestamp;
 
-  return newEvent;
+    // save
+    await newEvent.save();
+    returnedEvent = newEvent;
+  }
+  return returnedEvent;
 };
 
 const deleteEvent = async (_, { id }) => {
-  verify();
+  await verify();
   let result = '';
 
   if (!parentEmailCheck) {

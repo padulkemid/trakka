@@ -6,7 +6,7 @@ import {
   deleteEvent,
 } from '../entities/eventResolver';
 
-import { register, login } from '../entities/userResolver';
+import { register, login, logout } from '../entities/userResolver';
 
 const resolvers = {
   Query: {
@@ -24,6 +24,7 @@ const resolvers = {
 
     register,
     login,
+    logout,
   },
 };
 
