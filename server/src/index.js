@@ -8,6 +8,7 @@ const startServer = async () => {
   await mongoose.connect('mongodb://localhost:27017/trakka', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useCreateIndex: true,
   });
 
   server.listen().then(({ url }) => {

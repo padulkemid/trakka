@@ -1,14 +1,27 @@
-import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
-import { Event, User } from '../models';
+import { User } from '../models';
+import {
+  getEvents,
+  getEventsById,
+  createEvent,
+  editEvent,
+  deleteEvent,
+} from '../entities/eventResolver';
 
 const resolvers = {
   Query: {
-    getEvents: () => Event.find(),
-    getEventsById: (_, { id }) => Event.findById(id),
+    getEvents,
+    getEventsById,
   },
 
   Mutation: {
+    // Event
+
+    createEvent,
+    editEvent,
+    deleteEvent,
+    // User
+
     register: async (_, args) => {
       const { username, email, password } = args;
       const newUser = new User({ username, email, password });
@@ -22,19 +35,6 @@ const resolvers = {
 
       const check = await bcrypt.compare(password, getUser.password);
       console.log(check);
-    },
-    createEvent: async (_, { event }) => {
-      const newEvent = new Event(event);
-      await newEvent.save();
-
-      return newEvent;
-    },
-    deleteEvent: async (_, { id }) => {
-      await Event.deleteOne({ _id: id });
-
-      return {
-        result: `Event within the id of : ${id}, is now deleted!`,
-      };
     },
   },
 };
