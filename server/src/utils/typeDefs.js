@@ -14,7 +14,7 @@ const typeDefs = gql`
   input EventInput {
     title: String!
     description: String!
-    timestamp: String!
+    timestamp: String
   }
 
   ######## End of Event Definitions
