@@ -40,7 +40,7 @@ export default ({ action }) => {
         }
         else {
             const date = new Date();
-            setTimestamp(date.toUTCString());
+            setTimestamp(date.toISOString());
             setFormattedTime(getFormattedTime(date));
             console.log(getFormattedTime(date));
         }
@@ -71,7 +71,7 @@ export default ({ action }) => {
                         (e) => {
                             const date = new Date();
                             date.setHours(e.hour, e.minute);
-                            setTimestamp(date.toUTCString());
+                            setTimestamp(date.toISOString());
                         }
                     } />
                 </div>

@@ -2,9 +2,6 @@
 import { useMutation, useQuery } from '@apollo/react-hooks';
 import { CREATE_EVENT, GET_ALL_EVENTS, GET_EVENT, EDIT_EVENT, DELETE_EVENT } from "../schema";
 
-const [createEvent] = useMutation(CREATE_EVENT, { refetchQueries: [{ query: GET_ALL_EVENTS }] });
-const [editEvent] = useMutation(EDIT_EVENT, { refetchQueries: [{ query: GET_ALL_EVENTS }] });
-const [deleteEvent] = useMutation(DELETE_EVENT, { refetchQueries: [{ query: GET_ALL_EVENTS }] });
 
 
 export const GetAllEvents = () => {
@@ -17,6 +14,7 @@ export const GetEventById = (id) => {
   });
 }
 
+const [createEvent] = useMutation(CREATE_EVENT, { refetchQueries: [{ query: GET_ALL_EVENTS }] });
 export const CreateEvent = async (event) => {
   try {
     const result = await createEvent({
@@ -29,6 +27,7 @@ export const CreateEvent = async (event) => {
   }
 }
 
+const [editEvent] = useMutation(EDIT_EVENT, { refetchQueries: [{ query: GET_ALL_EVENTS }] });
 export const EditEventById = async (id, event) => {
   try {
     const result = await editEvent({
@@ -42,6 +41,7 @@ export const EditEventById = async (id, event) => {
   }
 }
 
+const [deleteEvent] = useMutation(DELETE_EVENT, { refetchQueries: [{ query: GET_ALL_EVENTS }] });
 export const DeleteEventById = async (id) => {
   try {
     const result = await deleteEvent({

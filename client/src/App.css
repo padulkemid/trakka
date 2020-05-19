@@ -58,3 +58,32 @@
 .button-group .cancel {
   grid-area: cancel;
 }
+
+.container {
+  padding: 2em 0;
+}
+
+.card {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "title . date"
+    "desc desc desc";
+  padding: 1em;
+  margin: 1em 0;
+}
+
+.card .title {
+  grid-area: title;
+}
+
+.card .date {
+  grid-area: date;
+  margin: 0;
+}
+
+.card .desc {
+  grid-area: desc;
+  margin: 0;
+}
