@@ -12,8 +12,8 @@ export default (props) => {
                 {
                     props.status==='register'&&(
                         <div className="form-group">
-                            <label for="Username">Username</label>
-                            <input type="text" className="form-control" id="Username" onChange={
+                            <label>Username</label>
+                            <input type="text" className="form-control" onChange={
                                 (e) => {
                                     setUsername(e.target.value)
                                 }
@@ -22,22 +22,23 @@ export default (props) => {
                     )
                 }
                 <div className="form-group">
-                    <label for="Email">Email address</label>
-                    <input type="email" className="form-control" id="Email" onChange={
+                    <label>Email address</label>
+                    <input type="email" className="form-control" onChange={
                         (e) => {
                             setEmail(e.target.value)
                         }
                     }/>
                 </div>
                 <div className="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" className="form-control" id="password" onChange={
+                    <label>Password</label>
+                    <input type="password" className="form-control" onChange={
                         (e) => {
                             setPassword(e.target.value)
                         }
                     }/>
                 </div>
-                <button type="submit" className="btn btn-primary" onSubmit={ () => {
+                <button type="submit" className="btn btn-primary" onClick={ (e) => {
+                    e.preventDefault()
                     props.action({username,email,password})
                 } }>Submit</button>
             </form>

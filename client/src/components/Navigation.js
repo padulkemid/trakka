@@ -6,14 +6,27 @@ import {
     Route,
     Link
 } from 'react-router-dom'
+import gql from 'graphql-tag'
+import {useMutation} from '@apollo/react-hooks'
+
+const LOGOUT = gql `
+    mutation logoutUser {
+        logout {
+            result
+        }
+    }
+`
 
 export default () => {
 
-    function Logout(){
-        
+    const [logoutUser] = useMutation(LOGOUT)
+
+    async function Logout(){
+        const result = await logoutUser()
+        console.log(result.data.logout.result)
     }
 
-    retrun (
+    return (
         <Router>
             <nav className='navbar navbar-expand-lg navbar-light bg-light'>
                 <ul className='nav'>
@@ -24,7 +37,7 @@ export default () => {
                         <Link className='nav-link' to="/register"> Register </Link>
                     </li>
                     <li className='nav-item'>
-                        <Link className='nav-link' to={Logout}> Logout </Link>
+                        <Link className='nav-link' to='/' onClick={Logout}> Logout </Link>
                     </li>
                 </ul>
             </nav>
