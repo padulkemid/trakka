@@ -1,5 +1,15 @@
 import gql from "graphql-tag";
 
+export const CREATE_EVENT = gql`
+mutation createEvent($event: EventInput!){
+  createEvent(event: $event){
+    id
+    title
+    description
+    timestamp
+  }
+}`;
+
 export const GET_ALL_EVENTS = gql`
 query allEvents {
   getEvents {
