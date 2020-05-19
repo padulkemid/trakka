@@ -36,12 +36,20 @@ export default () => {
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <ul className="nav">
           {login ? (
-            <li className="nav-item">
-              <Link className="nav-link" to="/" onClick={Logout}>
-                {' '}
-                Logout{' '}
-              </Link>
-            </li>
+            <>
+              <li className="nav-item">
+                <Link className="nav-link" to='/dashboard'>
+                  {' '}
+                  Dashboard{' '}
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to='/' onClick={Logout}>
+                  {' '}
+                  Logout{' '}
+                </Link>
+              </li>
+            </>
           ) : (
             <>
               <li className="nav-item">

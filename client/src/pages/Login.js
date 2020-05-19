@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Form from '../components/FormLogin&Register';
 import gql from 'graphql-tag';
 import { useHistory } from 'react-router-dom';
@@ -15,6 +15,7 @@ const LOGIN = gql`
 export default () => {
   const [loginUser] = useMutation(LOGIN);
   const history = useHistory();
+  const [err, setErr] = useState(null)
 
   async function Login(data) {
     try {
@@ -41,11 +42,18 @@ export default () => {
 
   return (
     <div className="container">
+      {
+        err&&(
+          <div className="alert alert-danger">
+            {err}
+          </div>
+        )
+      }
       <center>
         <h1> Login </h1>
       </center>
       <br />
-      <Form action={Login} status="login" />
+      <Form action={Login} status="login" err={setErr}/>
     </div>
   );
 };
