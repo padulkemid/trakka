@@ -5,7 +5,10 @@ const eventSchema = new Schema({
   email: String,
   title: String,
   description: String,
-  timestamp: String,
+  timestamp: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 const Event = mongoose.model('Event', eventSchema);
