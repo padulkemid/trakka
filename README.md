@@ -1,7 +1,8 @@
-<h1 align="center">Trakka</h1>
+<h1 align="center">📍 Trakka 📍</h1>
 
-## Desc
+## Docs 📕
 
-Track your events and/or meetings in a snap!  
-Never forget anything, just open this app.  
+  - Please read the `README` inside the respected folder.
+  - Server is available right [here](https://github.com/padulkemid/trakka/tree/devel/server)
+  - Client is available right [here](https://github.com/padulkemid/trakka/tree/devel/client)
 
