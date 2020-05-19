@@ -3,7 +3,7 @@ import {
     useHistory
 } from "react-router-dom";
 
-export default ({ event }) => {
+export default ({ event, isLoading }) => {
     const history = useHistory();
     const [formattedTime, setFormattedTime] = useState('00:00');
 
@@ -20,7 +20,6 @@ export default ({ event }) => {
             minute > 9 ? minute : `0${minute}`
             } ${hour > 12 ? 'pm' : 'am'}`;
     };
-
     return (
         <div className="card" onClick={(e) => { if (event) history.push(`/dashboard/edit/${event.id}`) }}>
             <h4 className="title">{event.title}</h4>
