@@ -36,3 +36,25 @@
     transform: rotate(360deg);
   }
 }
+
+.react-timekeeper {
+  width: 100% !important;
+  box-shadow: none !important;
+  border-radius: 0.25rem !important;
+  border: 1px solid #ced4da !important;
+}
+
+.button-group {
+  display: grid;
+  grid-template-columns: 1fr auto 1em 10em;
+  grid-template-rows: 1fr;
+  grid-template-areas: ". cancel . submit";
+}
+
+.button-group .submit {
+  grid-area: submit;
+}
+
+.button-group .cancel {
+  grid-area: cancel;
+}

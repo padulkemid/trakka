@@ -1,5 +1,5 @@
 import React from 'react'
-import { Login, Register } from '../pages'
+import { Login, Register, AddEvent, EditEvent, Dashboard } from '../pages'
 import {
     BrowserRouter as Router,
     Switch,
@@ -7,9 +7,9 @@ import {
     Link
 } from 'react-router-dom'
 import gql from 'graphql-tag'
-import {useMutation} from '@apollo/react-hooks'
+import { useMutation } from '@apollo/react-hooks'
 
-const LOGOUT = gql `
+const LOGOUT = gql`
     mutation logoutUser {
         logout {
             result
@@ -21,7 +21,7 @@ export default () => {
 
     const [logoutUser] = useMutation(LOGOUT)
 
-    async function Logout(){
+    async function Logout() {
         const result = await logoutUser()
         console.log(result.data.logout.result)
     }
@@ -42,13 +42,22 @@ export default () => {
                 </ul>
             </nav>
             <Switch>
-                    <Route exact path="/">
-                        <Login/>
-                    </Route>
-                    <Route exact path="/register">
-                        <Register/>
-                    </Route>
-                </Switch>
+                <Route exact path="/">
+                    <Login />
+                </Route>
+                <Route exact path="/register">
+                    <Register />
+                </Route>
+                <Route exact path="/dashboard">
+                    <Dashboard />
+                </Route>
+                <Route exact path="/dashboard/add">
+                    <AddEvent />
+                </Route>
+                <Route exact path="/dashboard/edit/:id">
+                    <EditEvent />
+                </Route>
+            </Switch>
         </Router>
     )
 }
