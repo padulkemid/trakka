@@ -21,6 +21,7 @@
 ## Notes
 
   - To view `typeDefs` you could go to `src/utils/typeDefs.js`
+  - Don't forget to turn on services for `mongodb` and `redis-cli`
 
 ## Queries for _client_ 🏄🏻‍♀️
 
