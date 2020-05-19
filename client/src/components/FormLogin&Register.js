@@ -15,12 +15,7 @@ export default (props) => {
                             <label>Username</label>
                             <input type="text" className="form-control" onChange={
                                 (e) => {
-                                    if(e.target.value === ''){
-                                        props.err('Must fill the username')
-                                    }else{
-                                        props.err(null)
-                                        setUsername(e.target.value)
-                                    }
+                                    setUsername(e.target.value)
                                 }
                             }/>
                         </div>
@@ -30,12 +25,7 @@ export default (props) => {
                     <label>Email address</label>
                     <input type="email" className="form-control" onChange={
                         (e) => {
-                            if(e.target.value === ''){
-                                props.err('Must fill the email')
-                            }else{
-                                props.err(null)
-                                setEmail(e.target.value)
-                            }
+                            setEmail(e.target.value)
                         }
                     }/>
                 </div>
@@ -43,16 +33,7 @@ export default (props) => {
                     <label>Password</label>
                     <input type="password" min='6' className="form-control" onChange={
                         (e) => {
-                            if(e.target.value === ''){
-                                props.err('Must fill the password')
-                            }else{
-                                if(e.target.value.length < 6){
-                                    props.err('The minimum length of password is 6')
-                                }else{
-                                    props.err(null)
-                                    setPassword(e.target.value)
-                                }
-                            }
+                            setPassword(e.target.value)
                         }
                     }/>
                 </div>

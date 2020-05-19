@@ -19,21 +19,33 @@ export default () => {
 
   async function Login(data) {
     try {
-      const result = await loginUser({
-        variables: {
-          input: {
-            email: data.email,
-            password: data.password,
+      if(data.email !== '' && data.password !== '' && data.password >= 6){
+        const result = await loginUser({
+          variables: {
+            input: {
+              email: data.email,
+              password: data.password,
+            },
           },
-        },
-      });
-      const reportedResult = result.data.login.result;
-      if (!reportedResult.length) {
-        console.log('Something happened, your password is wrong / something');
-      } else {
-        localStorage.setItem('email', data.email);
-        history.push('/dashboard');
-        window.location.reload();
+        });
+        const reportedResult = result.data.login.result;
+        if (!reportedResult.length) {
+          setErr('Something happened, your password is wrong / something');
+        } else {
+          localStorage.setItem('email', data.email);
+          history.push('/dashboard');
+          window.location.reload();
+        }
+      }else{
+        if(data.email === ''){
+          setErr('Must fill the email')
+        }
+        if(data.password === ''){
+          setErr('Must fill the password')
+        }
+        if(data.password < 6){
+          setErr('The length of password must equal or more then 6')
+        }
       }
     } catch (error) {
       console.log(error);
