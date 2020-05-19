@@ -125,6 +125,10 @@
   cursor: default;
 }
 
+.card.passed {
+  opacity: 0.5;
+}
+
 .dashboard {
   display: grid;
   grid-template-columns: auto 1fr auto;

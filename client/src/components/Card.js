@@ -3,15 +3,24 @@ import {
     useHistory
 } from "react-router-dom";
 
-export default ({ event, isLoading }) => {
+export default ({ event, date }) => {
     const history = useHistory();
     const [formattedTime, setFormattedTime] = useState('00:00');
+    const [isPassed, setIsPassed] = useState(false);
 
     useEffect(() => {
+        let eventDate = new Date();
         if (event.timestamp) {
-            setFormattedTime(getFormattedTime(new Date(event.timestamp)));
+            eventDate = new Date(event.timestamp);
+            setFormattedTime(getFormattedTime(eventDate));
+            setIsPassed(false);
+            if (date) {
+                if (date > eventDate) {
+                    setIsPassed(true);
+                }
+            }
         }
-    }, [event]);
+    }, [event, date]);
 
     const getFormattedTime = (date) => {
         const hour = date.getHours();
@@ -21,7 +30,7 @@ export default ({ event, isLoading }) => {
             } ${hour > 12 ? 'pm' : 'am'}`;
     };
     return (
-        <div className="card" onClick={(e) => { if (event) history.push(`/dashboard/edit/${event.id}`) }}>
+        <div className={`card${isPassed ? 'passed' : ''}`} onClick={(e) => { if (event) history.push(`/dashboard/edit/${event.id}`) }}>
             <h4 className="title">{event.title}</h4>
             <h5 className="date">{formattedTime}</h5>
             <p className="desc">{event.description}</p>

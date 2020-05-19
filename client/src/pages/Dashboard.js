@@ -9,18 +9,20 @@ import {
 export default () => {
   const history = useHistory();
   const { loading, error, data } = useQuery(GET_ALL_EVENTS);
-  const [curDate, setCurDate] = useState('');
+  const [dateStr, setDateStr] = useState('');
+  const [date, setDate] = useState('');
 
   useEffect(() => {
     const date = new Date();
     let dateArray = date.toString().split(' ');
     dateArray[0] = `${dateArray[0]},`;
-    setCurDate(dateArray.slice(0, 3).join(' '));
+    setDate(date);
+    setDateStr(dateArray.slice(0, 3).join(' '));
   }, []);
 
   return (
     <div className="container dashboard">
-      <h1 className="title">{curDate}</h1>
+      <h1 className="title">{dateStr}</h1>
       <div className="plus-btn transition">
         <div className="label transition">
           <p >New Event</p>
@@ -33,7 +35,7 @@ export default () => {
         loading ?
           <LoadingCardList />
           : data ?
-            <CardList events={data.getEvents} />
+            <CardList events={data.getEvents} date={date} />
             : <h2 className='card-list'>No events yet.</h2>
       }
     </div>
