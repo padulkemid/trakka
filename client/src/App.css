@@ -72,6 +72,7 @@
     "desc desc desc";
   padding: 1em;
   margin: 1em 0;
+  cursor: pointer;
 }
 
 .card .title {
@@ -86,4 +87,92 @@
 .card .desc {
   grid-area: desc;
   margin: 0;
+}
+
+.card .edit {
+  grid-area: 1 / 1 / 3 / 4;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.6);
+  opacity: 0;
+}
+
+.card:hover .edit {
+  opacity: 1;
+}
+
+.card .edit p {
+  margin: 0;
+}
+
+.dashboard {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "title . plus-btn"
+    "card-list card-list card-list";
+}
+
+.dashboard .title {
+  grid-area: title;
+}
+
+.dashboard .plus-btn {
+  grid-area: plus-btn;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "label btn";
+  opacity: 0.6;
+}
+
+.dashboard .plus-btn .label {
+  grid-area: label;
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  margin: 0 1em;
+}
+
+.dashboard .plus-btn .label p {
+  margin: 0;
+  font-size: 1.4em;
+}
+
+.dashboard .plus-btn .btn-container {
+  grid-area: btn;
+  display: flex;
+  align-items: center;
+}
+
+.dashboard .plus-btn .btn {
+  height: 2rem;
+  width: 2rem;
+  padding: 0;
+  border-radius: 50%;
+}
+
+.dashboard .plus-btn .btn img {
+  height: 100%;
+  width: 100%;
+}
+
+.dashboard .plus-btn:hover {
+  opacity: 1;
+}
+
+.dashboard .plus-btn:hover .label {
+  cursor: default;
+  opacity: 1;
+}
+
+.dashboard .card-list {
+  grid-area: card-list;
+}
+
+.transition {
+  transition: all 0.3s ease;
 }
