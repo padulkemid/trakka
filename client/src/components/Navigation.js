@@ -35,18 +35,6 @@ export default () => {
     <Router>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <ul className="nav">
-          <li className="nav-item">
-            <Link className="nav-link" to="/">
-              {' '}
-              Login{' '}
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/register">
-              {' '}
-              Register{' '}
-            </Link>
-          </li>
           {login ? (
             <li className="nav-item">
               <Link className="nav-link" to="/" onClick={Logout}>
@@ -55,7 +43,20 @@ export default () => {
               </Link>
             </li>
           ) : (
-            <li></li>
+            <>
+              <li className="nav-item">
+                <Link className="nav-link" to="/">
+                  {' '}
+                  Login{' '}
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/register">
+                  {' '}
+                  Register{' '}
+                </Link>
+              </li>
+            </>
           )}
         </ul>
       </nav>
@@ -79,4 +80,3 @@ export default () => {
     </Router>
   );
 };
-
