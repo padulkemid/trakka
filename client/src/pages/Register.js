@@ -20,16 +20,31 @@ export default () => {
     
     function Register(data){
         console.log(data)
-        registerNewUser({
-            variables: {
-                input: {
-                    username: data.username,
-                    email: data.email,
-                    password: data.password
+        if(data.username !== '' && data.email !== '' && data.password !== '' && data.password >= 6){
+            registerNewUser({
+                variables: {
+                    input: {
+                        username: data.username,
+                        email: data.email,
+                        password: data.password
+                    }
                 }
+            })
+            history.push('/')
+        }else{
+            if(data.username === ''){
+                setErr('Must fill the username')
             }
-        })
-        history.push('/')
+            if(data.email === ''){
+                setErr('Must fill the email')
+            }
+            if(data.password === ''){
+                setErr('Must fill the password')
+            }
+            if(data.password < 6){
+                setErr('The length of password must equal or more then 6')
+            }
+        }
     }
 
     return (
